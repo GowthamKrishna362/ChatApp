@@ -1,0 +1,9 @@
+@import "~scss/base/_color.scss";
+
+.chat-list {
+  flex-basis: 33%;
+  border-right: 1px solid black;
+  background-color: $background-dark;
+  display: flex;
+  flex-direction: column;
+}
