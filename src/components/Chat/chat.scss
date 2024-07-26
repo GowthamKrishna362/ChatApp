@@ -1,0 +1,11 @@
+@import "~scss/base/_color.scss";
+
+.chat {
+  display: flex;
+  height: 100vh;
+
+  .chatbox {
+    flex-basis: 66%;
+    background-color: $background-lightest;
+  }
+}

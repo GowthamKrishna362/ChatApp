@@ -1,0 +1,74 @@
+@use "sass:math";
+@import "~scss/base/_color";
+
+// Font weight variables
+$light: 300;
+$normal: 400;
+$semibold: 600;
+$bold: 700;
+$bolder: 900;
+
+// Font size relative to base font size - 16px
+$fontsizeLarge: 16; //32px
+$fontSizeH1: 8; //24px
+$fontSizeH2: 2; //18px
+$fontSizeBase: 0; //16px
+$fontSizeH3: -2; //14px
+$fontSizeH4: -3; //13px
+$fontSizeP6: -4; //12px
+$fontSizeSmall: -5; //11px
+$fontSizeTiny: -6; //10px
+
+@mixin font-source($fontSize: false, $fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @if $fontSize {
+    font-size: 16px + $fontSize;
+  }
+  @if $fontWeight {
+    font-weight: $fontWeight;
+  }
+  @if $fontColor {
+    color: $fontColor;
+  }
+  @if $fontOpacity {
+    opacity: fontOpacity($fontOpacity);
+  }
+  @if $lineHeight {
+    line-height: $lineHeight;
+  }
+}
+
+@mixin font-large($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontsizeLarge, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}
+
+@mixin font-h1($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontSizeH1, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}
+
+@mixin font-h2($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontSizeH2, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}
+
+@mixin font-base($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontSizeBase, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}
+
+@mixin font-h3($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontSizeH3, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}
+
+@mixin font-h4($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontSizeH4, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}
+
+@mixin font-p6($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontSizeP6, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}
+
+@mixin font-small($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontSizeSmall, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}
+
+@mixin font-tiny($fontWeight: false, $fontColor: false, $fontOpacity: false, $lineHeight: false) {
+  @include font-source($fontSizeTiny, $fontWeight, $fontColor, $fontOpacity, $lineHeight);
+}

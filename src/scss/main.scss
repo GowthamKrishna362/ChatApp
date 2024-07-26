@@ -1,0 +1,25 @@
+html {
+  scrollbar-width: none;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif !important;
+  white-space: normal;
+  box-sizing: border-box;
+
+}
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

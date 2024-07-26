@@ -1,0 +1,19 @@
+@import "~scss/base/_typography";
+
+.chat-header {
+  box-sizing: border-box;
+  max-width: 100%;
+  display: flex;
+  flex-basis: 60px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+
+  .header-text {
+    max-width: 100%;
+    @include font-h1($semibold, $dirty-white);
+  }
+  svg {
+    @include font-h1($semibold, $light-gray);
+  }
+}
