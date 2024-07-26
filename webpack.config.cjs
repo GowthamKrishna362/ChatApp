@@ -1,16 +1,21 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { keyValue } = require("./globalPathMapper.cjs");
 
 module.exports = {
   mode: "development",
   entry: {
     bundle: path.join(__dirname, "src", "main.js"),
   },
+  resolve: {
+    extensions: ["*", ".js", ".jsx", ".svg"],
+    alias: keyValue,
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: `[name].js`,
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   devServer: {
     static: {
       directory: path.resolve(__dirname, "dist"),
