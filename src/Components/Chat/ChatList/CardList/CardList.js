@@ -1,5 +1,5 @@
 import React from "react";
-import ChatCard from "./ChatCard/index.js";
+import ChatCard from "./ChatCard/ChatCard.js";
 import './cardList.scss'
 
 const CardList = () => {

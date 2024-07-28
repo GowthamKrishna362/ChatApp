@@ -1,0 +1,19 @@
+@import "~scss/base/_typography";
+
+.dialogue-box {
+  &__header-wpr {
+    @include font-h2($semibold);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+  &__content-wpr {
+    display: flex;
+    flex-direction: column;
+    margin: 14px;
+  }
+  a {
+    margin-top: 8px;
+  }
+}

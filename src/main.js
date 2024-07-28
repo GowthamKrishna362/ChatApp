@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Chat from "./components/Chat/index.js";
-import './scss/main.scss'
+import App from "./App.js";
+import { BrowserRouter } from "react-router-dom";
+import "./scss/main.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Chat/>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );

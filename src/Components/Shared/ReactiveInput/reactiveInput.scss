@@ -1,0 +1,11 @@
+@import "~scss/base/_typography";
+
+.reactive-input {
+  &__label {
+    @include font-h4($semibold);
+    margin-bottom: 8px;
+  }
+  &__input {
+    height: 20px;
+  }
+}
