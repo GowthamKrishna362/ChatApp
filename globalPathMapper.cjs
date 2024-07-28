@@ -1,6 +1,11 @@
 const path = require("path");
 
-const pathArray = [["scss", "./src/scss"]];
+const pathArray = [
+  ["scss", "./src/scss"],
+  ["Components", "./src/Components"],
+  ["Actions", "./src/Actions"],
+  ["Constants", "./src/Constants"]
+];
 
 const keyValue = pathArray.reduce((acc, curr) => {
   const [key, value] = curr;

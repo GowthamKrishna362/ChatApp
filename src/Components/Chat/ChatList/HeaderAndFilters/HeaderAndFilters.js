@@ -1,5 +1,5 @@
 import React from "react";
-import ChatHeader from "./ChatHeader/index.js";
+import ChatHeader from "./ChatHeader/CharHeader.js.js";
 
 import "./headerAndFilters.scss";
 

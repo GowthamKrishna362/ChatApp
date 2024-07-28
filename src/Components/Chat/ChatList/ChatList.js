@@ -1,6 +1,6 @@
 import React from "react";
-import HeaderAndFilters from "./HeaderAndFilters/index.js";
-import CardList from "./CardList/index.js";
+import HeaderAndFilters from "./HeaderAndFilters/HeaderAndFilters.js";
+import CardList from "./CardList/CardList.js";
 
 import "./chatList.scss";
 

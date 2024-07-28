@@ -1,7 +1,7 @@
 import React from "react";
-import ChatList from "./ChatList/index.js";
-import LeftPanel from "./LeftPanel/index.js";
-import Chatbox from "./Chatbox/index.js";
+import ChatList from "./ChatList/ChatList.js";
+import LeftPanel from "./LeftPanel/LeftPanel.js";
+import Chatbox from "./Chatbox/Chatbox.js";
 
 import "./chat.scss";
 
