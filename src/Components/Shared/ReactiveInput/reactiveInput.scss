@@ -4,6 +4,9 @@
   &__label {
     @include font-h4($semibold);
     margin-bottom: 8px;
+    &.d-inline-block {
+      margin-right: 8px;
+    }
   }
   &__input {
     height: 20px;
