@@ -6,7 +6,7 @@ import "./reactiveInput.scss";
 const ReactiveInput = ({
   label = null,
   type = "text",
-  value = undefined,
+  value = null,
   onChange = () => {},
   isInline = false,
   placeholder = null,

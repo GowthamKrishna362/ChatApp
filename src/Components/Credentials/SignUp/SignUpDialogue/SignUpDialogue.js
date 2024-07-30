@@ -1,13 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ReactiveInput from "Components/Shared/ReactiveInput/ReactiveInput.js";
 import useReactiveInput from "Components/Shared/ReactiveInput/useReactiveInput.js";
 import { addNewUser } from "Actions/userActions.js";
+import { useAuth } from "Contexts/AuthContext.js";
 
-function SignUpDialogue(props) {
+function SignUpDialogue() {
+  const { login } = useAuth();
   const { value: username, onChange: onChangeUsername } = useReactiveInput();
   const { value: name, onChange: onChangeName } = useReactiveInput();
   const { value: password, onChange: onChangePassword } = useReactiveInput();
+
+  const onSubmit = async () => {
+    try {
+      const res = await addNewUser({ username, password, name });
+      login(username);
+      return res;
+    } catch (e) {
+      return e;
+    }
+  };
 
   return (
     <div className="signup-dialogue dialogue-box">
@@ -16,9 +27,10 @@ function SignUpDialogue(props) {
         <ReactiveInput value={name} onChange={onChangeName} label="Name" />
         <ReactiveInput value={username} onChange={onChangeUsername} label="Username" />
         <ReactiveInput value={password} onChange={onChangePassword} label="Password" />
-        <button type="submit" onClick={() => addNewUser({ name, username, password })}>
+        <button type="submit" onClick={onSubmit}>
           Submit
         </button>
+        <a href="/login">Existing user?</a>
       </div>
     </div>
   );

@@ -4,7 +4,10 @@ const pathArray = [
   ["scss", "./src/scss"],
   ["Components", "./src/Components"],
   ["Actions", "./src/Actions"],
-  ["Constants", "./src/Constants"]
+  ["Constants", "./src/Constants"],
+  ["Services", "./src/Services"],
+  ["Contexts", "./src/Contexts"],
+  ["CustomHooks", "./src/CustomHooks"],
 ];
 
 const keyValue = pathArray.reduce((acc, curr) => {
