@@ -12,7 +12,7 @@ const ChatHeader = () => {
     <div className="chat-header">
       <div className="header-text">Chats</div>
       <div className="header-icons">
-        <FontAwesomeIcon icon={faPlus} onClick={openModal} />
+        <FontAwesomeIcon className="clickable" icon={faPlus} onClick={openModal} />
         <NewChatModal {...modalProps} />
       </div>
     </div>

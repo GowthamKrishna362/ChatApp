@@ -1,6 +1,16 @@
 {
-    "compilerOptions": {
-        "moduleResolution": "nodenext"
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "nodenext",
+    "paths": {
+      "scss/*": ["src/scss/*"],
+      "Components/*": ["src/Components/*"],
+      "Actions/*": ["src/Actions/*"],
+      "Constants/*": ["src/Constants/*"],
+      "Services/*": ["src/Services/*"],
+      "Contexts/*": ["src/Contexts/*"],
+      "CustomHooks/*": ["src/CustomHooks/*"]
     }
-    "exclude": ["node_modules"]
+  },
+  "exclude": ["node_modules"]
 }

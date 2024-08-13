@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getItemFromSessionStorage } from "./globalUtils.js";
+import { getItemFromSessionStorage } from "./utils/globalUtils.js";
 import { SESSION_STORAGE_KEYS } from "Constants/globalConstants.js";
 
 const axiosClient = axios.create();

@@ -1,0 +1,21 @@
+.message {
+  $green: #86bb71;
+  $blue: #94c2ed;
+  $orange: #e38968;
+  $gray: #92959e;
+
+  flex-direction: column;
+  color: white;
+  padding: 8px 20px;
+  line-height: 26px;
+  font-size: 16px;
+  border-radius: 7px;
+  margin-bottom: 8px;
+  &.other-user {
+    align-items: flex-start;
+  }
+  &.current-user {
+    background: $green;
+    align-self: flex-end;
+  }
+}
