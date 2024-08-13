@@ -4,8 +4,8 @@ import Modal from "react-modal";
 
 import useReactiveInput from "Components/Shared/ReactiveInput/useReactiveInput.js";
 import ReactiveInput from "Components/Shared/ReactiveInput/ReactiveInput.js";
-import { addNewConversation } from "Actions/conversationActions.js";
-import { SESSION_STORAGE_KEYS } from "Constants/globalConstants.js";
+
+import useNewChat from "CustomHooks/api/useNewChat.js";
 
 function NewChatModal({ isOpen, closeModal, defaultStyles }) {
   const style = {
@@ -14,6 +14,7 @@ function NewChatModal({ isOpen, closeModal, defaultStyles }) {
       width: "400px",
     },
   };
+  const onNewChat = useNewChat();
   const { value: targetUsername, onChange: onChangeTargetUsername } = useReactiveInput();
   return (
     <Modal isOpen={isOpen} onRequestClose={closeModal} style={style}>
@@ -21,13 +22,7 @@ function NewChatModal({ isOpen, closeModal, defaultStyles }) {
         <div className="dialogue-box__header-wpr">New Chat</div>
         <div className="dialogue-box__content-wpr credentials-form">
           <ReactiveInput value={targetUsername} onChange={onChangeTargetUsername} label="With user" />
-          <button
-            type="submit"
-            onClick={() => {
-              const username = sessionStorage.getItem(SESSION_STORAGE_KEYS.USERNAME);
-              addNewConversation(username, targetUsername);
-            }}
-          >
+          <button type="submit" onClick={onNewChat}>
             Submit
           </button>
           <button type="close" onClick={closeModal}>

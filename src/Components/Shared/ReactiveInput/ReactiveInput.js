@@ -6,20 +6,22 @@ import "./reactiveInput.scss";
 const ReactiveInput = ({
   label = null,
   type = "text",
-  value = null,
+  value = "",
   onChange = () => {},
   isInline = false,
   placeholder = null,
+  onKeyDown = () => {}
 } = {}) => {
   return (
     <div className="reactive-input">
-      <div className={classNames("reactive-input__label", { "d-inline-block": isInline })}>{label}</div>
+      {label && <div className={classNames("reactive-input__label", { "d-inline-block": isInline })}>{label}</div>}
       <input
         className="reactive-input__input"
         type={type}
         onChange={onChange}
         value={value}
         placeholder={placeholder}
+        onKeyDown={onKeyDown}
       ></input>
     </div>
   );
@@ -32,6 +34,7 @@ ReactiveInput.propTypes = {
   onChange: PropTypes.func,
   isInline: PropTypes.bool,
   placeholder: PropTypes.string,
+  onKeyDown: PropTypes.func
 };
 
 export default ReactiveInput;

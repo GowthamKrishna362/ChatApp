@@ -1,0 +1,10 @@
+@import "~scss/base/_color.scss";
+
+.message-viewport {
+  display: flex;
+  flex-direction: column;
+  background-color: $background-dark;
+  flex-grow: 1;
+  overflow: auto;
+  padding: 16px;
+}

@@ -1,30 +1,10 @@
-import axiosClient from "Services/axiosClient.js";
 import { ADD_NEW_USER, LOGIN_USER } from "Constants/apiUrlConstants.js";
+import { makePostRequest } from "./axiosActions.js";
 
 export function addNewUser({ name, username, password }) {
-  return axiosClient
-    .post(ADD_NEW_USER, {
-      name,
-      username,
-      password,
-    })
-    .then((res) => {
-      return res;
-    })
-    .catch((e) => {
-      console.log(e.response.data.message);
-      throw new Error(e.response.message);
-    });
+  return makePostRequest(ADD_NEW_USER, { username, name, password });
 }
 
 export function loginUser(username, password) {
-  return axiosClient
-    .post(LOGIN_USER, {
-      username,
-      password,
-    })
-    .then((res) => {
-      return res;
-    })
-    .catch((e) => console.log(e.response.data.message));
+  return makePostRequest(LOGIN_USER, { username, password });
 }
