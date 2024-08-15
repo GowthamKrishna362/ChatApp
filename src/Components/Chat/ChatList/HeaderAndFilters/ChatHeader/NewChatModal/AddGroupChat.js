@@ -10,9 +10,7 @@ export default function AddGroupChat({ closeModal }) {
   const onNewGroupChat = useNewGroupChat(closeModal);
   const { value: groupName, onChange } = useReactiveInput();
   const { options, searchedUsersLoader, setSearchKey } = useSelectUser();
-  function getUsernamesFromValues() {
-    console.log(targetUsernames);
-    
+  function getUsernamesFromValues() {    
     return targetUsernames.map((user) => user.value);
   }
   return (

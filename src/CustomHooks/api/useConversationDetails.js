@@ -9,15 +9,14 @@ function useConversationDetails(chatId) {
     async function fetchMessages() {
       try {
         let messages;
-
         if (isChatFetched(chatId)) {
           return;
         }
-        const response = await getMessagesByConversationId(chatId);        
+        const response = await getMessagesByConversationId(chatId);
         messages = response.data;
         setChatMessages(chatId, messages);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     }
 
