@@ -3,18 +3,18 @@ import "./chatbox.scss";
 import { useChatContext } from "Contexts/ChatContext.js";
 import ChatboxBottomPanel from "./ChatboxBottomPanel/ChatboxBottomPanel.js";
 import MessageViewport from "./MessageViewport/MessageViewport.js";
-import useConversationMessages from "CustomHooks/api/useConversationMessages.js";
+import useConversationDetails from "CustomHooks/api/useConversationDetails.js";
+import ChatboxTopPanel from "./ChatboxTopPanel/ChatboxTopPanel.js";
 
 const Chatbox = () => {
-  const { selectedChatDetails } = useChatContext();
-  const chatId = selectedChatDetails.id;
-  const messages = useConversationMessages(chatId);
+  const { getSelectedChatId, getCurrentChatMessages } = useChatContext();
+  useConversationDetails(getSelectedChatId());
 
   return (
     <div className="chatbox">
-      <div className="top-panel"></div>
-      <MessageViewport messages={messages} />
-      <ChatboxBottomPanel />
+      <ChatboxTopPanel />
+      <MessageViewport messages={getCurrentChatMessages(getSelectedChatId())} />
+      {getSelectedChatId() && <ChatboxBottomPanel />}
     </div>
   );
 };

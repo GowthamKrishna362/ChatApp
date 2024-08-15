@@ -9,7 +9,7 @@ import useSendMessage from "CustomHooks/api/useSendMessage.js";
 
 export default function ChatboxBottomPanel() {
   const sendMessage = useSendMessage();
-  const { value, onChange, onKeyDown } = useReactiveInput({ onSubmit: sendMessage });
+  const { value, onChange, onKeyDown } = useReactiveInput({ onSubmit: sendMessage, clearOnSubmit: true });
 
   return (
     <div className="chatbox-bottom-panel">

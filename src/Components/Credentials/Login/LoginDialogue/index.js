@@ -6,7 +6,7 @@ import useLoginUser from "CustomHooks/api/useLoginUser.js";
 const LoginDialogue = () => {
   const { value: username, onChange: onChangeUsername } = useReactiveInput();
   const { value: password, onChange: onChangePassword } = useReactiveInput();
-  const onSubmit = useLoginUser()
+  const onSubmit = useLoginUser();
 
   return (
     <div className="login-dialogue dialogue-box">
@@ -14,7 +14,12 @@ const LoginDialogue = () => {
       <div className="dialogue-box__content-wpr credentials-form">
         <ReactiveInput value={username} onChange={onChangeUsername} label="Username" />
         <ReactiveInput value={password} onChange={onChangePassword} label="Password" type="password" />
-        <button type="submit" onClick={() => onSubmit(username, password)}>
+        <button
+          type="submit"
+          onClick={() => {
+            onSubmit(username, password);
+          }}
+        >
           Submit
         </button>
         <a href="/signup">New user?</a>

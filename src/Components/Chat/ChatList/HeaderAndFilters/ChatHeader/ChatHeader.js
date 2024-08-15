@@ -1,5 +1,6 @@
 import React from "react";
 import "./chatHeader.scss";
+import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useModal from "CustomHooks/useModal.js";

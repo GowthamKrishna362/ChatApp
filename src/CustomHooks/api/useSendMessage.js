@@ -5,13 +5,14 @@ import { getMessageObj } from "Services/utils/messageUtils.js";
 
 function useSendMessage() {
   const { stompClient } = useStompContext();
-  const { selectedChatDetails, addMessageToChat } = useChatContext();
+  const { getSelectedChatId, addMessageToChat } = useChatContext();
 
-  return function (enteredValue) {
-    const message = getMessageObj(enteredValue, selectedChatDetails.id);
+  return function (enteredValue, { clearInput }) {
+    const message = getMessageObj(enteredValue, getSelectedChatId());
     sendMessage(stompClient, message);
-    addMessageToChat(selectedChatDetails.id, message);
+    addMessageToChat(getSelectedChatId(), message);
+    clearInput();
   };
 }
 
-export default useSendMessage
+export default useSendMessage;

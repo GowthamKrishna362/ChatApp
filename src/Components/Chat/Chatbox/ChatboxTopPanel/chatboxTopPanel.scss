@@ -1,0 +1,22 @@
+@import "~scss/base/_typography";
+
+.chatbox-top-panel {
+  background-color: $background-lighter;
+  height: 55px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  &__profile {
+    display: flex;
+    .profile-picture {
+      @include font-large();
+      margin: 0px 24px;
+      color: $light-gray;
+    }
+    .chat-name {
+      @include font-h2($normal, $dirty-white);
+      align-self: center;
+    }
+  }
+}

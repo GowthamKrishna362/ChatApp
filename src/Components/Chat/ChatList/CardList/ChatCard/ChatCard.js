@@ -12,16 +12,16 @@ const ChatCard = ({ chatName, lastText = "321321314141", id }) => {
       className="chat-card"
       id={id}
       onClick={() => {
-        moveToChat({ id, chatName });
+        moveToChat(id);
       }}
     >
-      <div className="chat-card__profile-picture">
-        <FontAwesomeIcon icon={faUser} />
-      </div>
-      <div className="chat-card__details">
-        <div className="chat-name">{chatName}</div>
-        <div className="last-text">{lastText}</div>
-      </div>
+    <div className="chat-card__profile-picture">
+      <FontAwesomeIcon icon={faUser} />
+    </div>
+    <div className="chat-card__details">
+      <div className="chat-name">{chatName}</div>
+      <div className="last-text">{lastText}</div>
+    </div>
     </div>
   );
 };
