@@ -1,23 +1,18 @@
 import { useEffect } from "react";
-
-import { getAllConversations } from "Actions/conversationActions.js";
-import { useChatContext } from "Contexts/ChatContext.js";
 import { useStompContext } from "Contexts/StompContext.js";
-import { getUsername } from "Services/utils/globalUtils.js";
+import { getUsername } from "utils/globalUtils.js";
+import { useGetAllChatsQuery } from "features/apiSlice.js";
 
 function useAllConversations() {
-  const { initializeChats } = useChatContext();
+  const { data: allChats, isSuccess } = useGetAllChatsQuery(getUsername());
   const { initializeStompClient, updateSubscriptionList } = useStompContext();
-  async function fetchAllConversations() {
-    const username = getUsername()
-    const response = await getAllConversations(username);
-    updateSubscriptionList(response.data.map((conversation) => conversation.id));
-    initializeStompClient();
-    initializeChats(response.data)
-  }
+
   useEffect(() => {
-    fetchAllConversations();
-  }, []);
+    if (isSuccess && allChats) {
+      initializeStompClient();
+      updateSubscriptionList(Object.values(allChats).map((conversation) => conversation.id));
+    }
+  }, [isSuccess, allChats]);
 }
 
-export default useAllConversations
+export default useAllConversations;

@@ -10,5 +10,6 @@ export function loginUser(username, password) {
 }
 
 export function fetchUsers(prefix, options) {
+  
   return makeGetRequest(SEARCH_USERS(prefix), options);
 }

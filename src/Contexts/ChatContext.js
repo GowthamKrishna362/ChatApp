@@ -24,7 +24,7 @@ export function ChatProvider({ children }) {
     setSelectedChatId(id);
   }
 
-  function getSelectedChatId() {
+  function selectCurrentChatId() {
     return selectedChatId;
   }
 
@@ -74,7 +74,7 @@ export function ChatProvider({ children }) {
     moveToChat,
     getChatList,
     isChatFetched,
-    getSelectedChatId,
+    selectCurrentChatId,
     getCurrentChatMessages,
     getCurrentChatDetails,
     addChatToList,

@@ -1,14 +1,12 @@
-import { addNewGroupChat } from "Actions/conversationActions.js";
-import { useChatContext } from "Contexts/ChatContext.js";
-import { getUsername } from "Services/utils/globalUtils.js";
+import { useCreateNewGroupChatMutation } from "features/apiSlice.js";
+import { getUsername } from "utils/globalUtils.js";
 
 function useNewGroupChat(closeModal) {
-  const { addChatToList } = useChatContext();
+  const [triggerNewGroupChat] = useCreateNewGroupChatMutation();
   return async (targetUsernames, groupName) => {
     try {
       const username = getUsername();
-      const res = await addNewGroupChat(username, targetUsernames, groupName);
-      addChatToList(res.data);
+      await triggerNewGroupChat({ fromUsername: username, targetUsernames, conversationName: groupName }).unwrap();
       closeModal();
     } catch (error) {
       console.error("Failed to create a new chat:", error);

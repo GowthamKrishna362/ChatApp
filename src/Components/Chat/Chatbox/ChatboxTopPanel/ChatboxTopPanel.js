@@ -1,19 +1,25 @@
 import React from "react";
-import { useChatContext } from "Contexts/ChatContext.js";
-import { getChatName } from "Services/utils/chatUtils.js";
+import { getChatName, getCurrentChatDetails } from "utils/chatUtils.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import "./chatboxTopPanel.scss";
+import { useSelector } from "react-redux";
+import { selectCurrentChatId } from "features/selectors.js";
+import { useGetAllChatsQuery } from "features/apiSlice.js";
+import { getUsername } from "utils/globalUtils.js";
 
 export default function ChatboxTopPanel() {
-  const { getCurrentChatDetails, getSelectedChatId } = useChatContext();
-  const currentChatDetails = getCurrentChatDetails();
+  const { data: chatDetailsMap } = useGetAllChatsQuery(getUsername());
+  const selectedChatId = useSelector(selectCurrentChatId);
+
+  const currentChatDetails = getCurrentChatDetails(chatDetailsMap, selectedChatId);
   const { conversationType, conversationName, members } = currentChatDetails || {};
   const chatName = getChatName(conversationName, conversationType, members);
+
   return (
     <div className="chatbox-top-panel">
-      {getSelectedChatId() && (
+      {currentChatDetails && (
         <div className="chatbox-top-panel__profile">
           <div className="profile-picture">
             <FontAwesomeIcon icon={faUser} />

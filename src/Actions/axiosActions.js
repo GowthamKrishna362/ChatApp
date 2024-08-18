@@ -11,27 +11,21 @@ function errorHandler(err, onError, throwError) {
 }
 
 export function makeGetRequest(url, options = {}) {
-  const { throwError, onError, setLoader = () => {} } = options;
-
-  setLoader(true);
+  const { throwError, onError, onSuccessDispatch } = options;
   return axiosClient
     .get(url)
-    .then((res) => res)
-    .catch((err) => errorHandler(err, onError, throwError))
-    .finally(() => {
-      setLoader(false);
-    });
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => errorHandler(err, onError, throwError));
 }
 
 export function makePostRequest(url, payload, options = {}) {
-  const { throwError, onError, setLoader = () => {} } = options;
+  console.log(url);
 
-  setLoader(true);
+  const { throwError, onError, setLoader = () => {} } = options;
   return axiosClient
     .post(url, payload)
     .then((res) => res)
-    .catch((err) => errorHandler(err, onError, throwError))
-    .finally(() => {
-      setLoader(false);
-    });
+    .catch((err) => errorHandler(err, onError, throwError));
 }

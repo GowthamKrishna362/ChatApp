@@ -2,8 +2,10 @@ import {
   ADD_NEW_PRIVATE_CHAT,
   ADD_NEW_GROUP_CHAT,
   CONVERSATION_BASE,
-  GET_CONVERSATION_MESSAGES,
+  GET_CONVERSATION_MESSAGE_DETAILS,
 } from "Constants/apiUrlConstants.js";
+import { CHAT_ACTIONS } from "Constants/actionConstants.js";
+
 import { makeGetRequest, makePostRequest } from "./axiosActions.js";
 
 export function addNewPrivateChat(fromUsername, targetUsername) {
@@ -15,9 +17,9 @@ export function addNewGroupChat(fromUsername, targetUsernames, groupName) {
 }
 
 export function getAllConversations(username) {
-  return makeGetRequest(`${CONVERSATION_BASE}${username}`);
+  return makeGetRequest(`${CONVERSATION_BASE}${username}`, { onSuccessDispatch: CHAT_ACTIONS.INITIALIZE_CHAT_DETAILS });
 }
 
 export function getMessagesByConversationId(conversationId) {
-  return makeGetRequest(GET_CONVERSATION_MESSAGES(conversationId));
+  return makeGetRequest(GET_CONVERSATION_MESSAGE_DETAILS(conversationId));
 }

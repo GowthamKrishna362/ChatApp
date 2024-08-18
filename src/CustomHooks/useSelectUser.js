@@ -1,24 +1,25 @@
 import { useCallback, useState } from "react";
-
-import useSearchUsers from "CustomHooks/api/useSearchUsers.js";
 import useDebounce from "CustomHooks/useDebounce.js";
 import { DEBOUNCE_INTERVAL } from "Constants/globalConstants.js";
+import { useLazyGetUsersByPrefixQuery } from "features/apiSlice.js";
 
 export default function useSelectUser() {
   const [searchKey, setSearchKey] = useState("");
+  const trimmedSearchKey = searchKey.trim();
+  const [triggerSearch, { data: users, loader }] = useLazyGetUsersByPrefixQuery();
+  const debounceCallback = useCallback(() => {
+    if (trimmedSearchKey) triggerSearch(trimmedSearchKey);
+  }, [searchKey]);
 
-  const { searchUsers, searchedUsers, loader: searchedUsersLoader } = useSearchUsers();
-
-  const debounceCallback = useCallback(() => searchUsers(searchKey), [searchUsers, searchKey]);
   useDebounce(searchKey, debounceCallback, DEBOUNCE_INTERVAL);
 
-  const options = searchedUsers.map((user) => ({
+  const options = (users || []).map((user) => ({
     value: user.username,
     label: user.username,
   }));
   return {
     options,
-    searchedUsersLoader,
+    loader,
     setSearchKey,
   };
 }

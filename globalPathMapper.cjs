@@ -8,6 +8,8 @@ const pathArray = [
   ["Services", "./src/Services"],
   ["Contexts", "./src/Contexts"],
   ["CustomHooks", "./src/CustomHooks"],
+  ["utils", "./src/utils"],
+  ["features", "./src/features"],
 ];
 
 const keyValue = pathArray.reduce((acc, curr) => {

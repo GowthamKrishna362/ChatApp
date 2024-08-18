@@ -1,14 +1,12 @@
-import { addNewPrivateChat } from "Actions/conversationActions.js";
-import { useChatContext } from "Contexts/ChatContext.js";
-import { getUsername } from "Services/utils/globalUtils.js";
+import { useCreateNewPrivateChatMutation } from "features/apiSlice.js";
+import { getUsername } from "utils/globalUtils.js";
 
 function useNewPrivateChat(closeModal) {
-  const { addChatToList } = useChatContext();
+  const [triggerNewChat] = useCreateNewPrivateChatMutation();
   return async (targetUsername) => {
     try {
       const username = getUsername();
-      const res = await addNewPrivateChat(username, targetUsername);
-      addChatToList(res.data);
+      await triggerNewChat({ fromUsername: username, targetUsername }).unwrap();
       closeModal();
     } catch (error) {
       console.error("Failed to create a new chat:", error);

@@ -1,20 +1,22 @@
 import React from "react";
-import "./chatbox.scss";
-import { useChatContext } from "Contexts/ChatContext.js";
 import ChatboxBottomPanel from "./ChatboxBottomPanel/ChatboxBottomPanel.js";
 import MessageViewport from "./MessageViewport/MessageViewport.js";
-import useConversationDetails from "CustomHooks/api/useConversationDetails.js";
 import ChatboxTopPanel from "./ChatboxTopPanel/ChatboxTopPanel.js";
+import { useGetConversationMessageDetailsQuery } from "features/apiSlice.js";
+import { selectCurrentChatId } from "features/selectors.js";
+
+import "./chatbox.scss";
+import { useSelector } from "react-redux";
 
 const Chatbox = () => {
-  const { getSelectedChatId, getCurrentChatMessages } = useChatContext();
-  useConversationDetails(getSelectedChatId());
+  const selectedChatId = useSelector(selectCurrentChatId);
+  const { data: messageDetails } = useGetConversationMessageDetailsQuery(selectedChatId, { skip: !selectedChatId });
 
   return (
     <div className="chatbox">
       <ChatboxTopPanel />
-      <MessageViewport messages={getCurrentChatMessages(getSelectedChatId())} />
-      {getSelectedChatId() && <ChatboxBottomPanel />}
+      <MessageViewport messageDetails={messageDetails || []} />
+      {selectedChatId && <ChatboxBottomPanel />}
     </div>
   );
 };

@@ -1,19 +1,28 @@
 import React, { createContext, useState, useContext, useRef } from "react";
 import { Client } from "@stomp/stompjs";
-import { useChatContext } from "./ChatContext.js";
-import { getUsername } from "Services/utils/globalUtils.js";
+import { getUsername } from "utils/globalUtils.js";
 import { TOPIC_ENDPOINT } from "Constants/apiUrlConstants.js";
+import { addMessageToChat, markChatDelivered, updateLastOpened } from "utils/storeHelpers/cacheUpdateUtils.js";
+import { useDispatch } from "react-redux";
 
 const StompContext = createContext();
 
 export function StompProvider({ children }) {
-  const { addMessageToChat } = useChatContext();
+  const dispatch = useDispatch();
   const [stompClient, setStompClient] = useState();
   const subscriptionListRef = useRef([]);
 
   function onMessageCallback(conversationId, message) {
     const messageBody = JSON.parse(message.body);
-    if (messageBody.sender !== getUsername()) addMessageToChat(conversationId, messageBody);
+    if (messageBody.socketMessageType === "CHAT_MESSAGE") {
+      if (messageBody.sender !== getUsername()) dispatch(addMessageToChat(conversationId, messageBody));
+      else dispatch(markChatDelivered(conversationId, messageBody));
+    } else {
+      console.log("here");
+      
+      dispatch(updateLastOpened(conversationId, messageBody));
+      console.log(messageBody);
+    }
   }
 
   function enableExistingSubscriptions(client) {
@@ -44,7 +53,7 @@ export function StompProvider({ children }) {
 
   function addChatToSubscription(conversationId) {
     subscriptionListRef.current = [...subscriptionListRef.current, conversationId];
-    stompClient.subscribe;
+    stompClient.subscribe(TOPIC_ENDPOINT(conversationId), (message) => onMessageCallback(conversationId, message));
   }
 
   const contextItems = {
