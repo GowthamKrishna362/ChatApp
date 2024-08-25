@@ -1,9 +1,10 @@
+import { SOCKET_MESSAGE_TYPES } from "Constants/globalConstants.js";
 import { getUsername } from "./globalUtils.js";
 import { v4 as uuidv4 } from "uuid";
 
 export function getMessageObj(messageContent, conversationId) {
   return {
-    socketMessageType : "CHAT_MESSAGE",
+    socketMessageType : SOCKET_MESSAGE_TYPES.CHAT_MESSAGE,
     tempId: uuidv4(),
     sender: getUsername(),
     conversationId,
@@ -15,7 +16,7 @@ export function getMessageObj(messageContent, conversationId) {
 
 export function getConversationOpenEvent(conversationId) {
   return {
-    socketMessageType : "CONVERSATION_OPEN",
+    socketMessageType : SOCKET_MESSAGE_TYPES.CONVERSATION_OPEN,
     username: getUsername(),
     conversationId,
     timeStamp: new Date().toISOString(),

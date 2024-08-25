@@ -17,7 +17,7 @@ function useSocketAction() {
     clearInput();
   }
 
-  function sendConversationOpen(id) {
+  function sendConversationOpen(id = currentChatId) {
     const conversationOpenEvent = getConversationOpenEvent(id);
     sendConversationOpenEvent(stompClient, conversationOpenEvent);
   }

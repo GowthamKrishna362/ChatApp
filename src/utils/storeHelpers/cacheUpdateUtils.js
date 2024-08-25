@@ -1,5 +1,5 @@
-import { current } from "@reduxjs/toolkit";
 import { updateQueryData } from "features/apiSlice.js";
+import { getUsername } from "utils/globalUtils.js";
 
 export function addMessageToChat(chatId, message) {
   return (dispatch) => {
@@ -40,6 +40,17 @@ export function updateLastOpened(chatId, socketMessage) {
           draft.conversationLastOpenedList.push(socketMessage);
         }
       })
+    );
+  };
+}
+
+export function addChatToList(newChat) {
+  return (dispatch) => {
+    dispatch(
+      updateQueryData("getAllChats", getUsername(), (draft) => ({
+        ...draft,
+        newChat,
+      }))
     );
   };
 }

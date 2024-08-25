@@ -2,20 +2,34 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_CONSTANTS } from "Constants/apiUrlConstants.js";
 import { SESSION_STORAGE_KEYS } from "Constants/globalConstants.js";
 import { getChatDetailsMapFromApi } from "utils/chatUtils.js";
-import { addChatToList } from "utils/storeHelpers/mutationHelperUtils.js";
+import { addChatToList } from "utils/storeHelpers/cacheUpdateUtils.js";
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_CONSTANTS.API_BASE,
-    prepareHeaders: (headers) => {
+    prepareHeaders: (headers, { endpoint }) => {
       const token = sessionStorage.getItem(SESSION_STORAGE_KEYS.JWT_TOKEN);
-      if (token) {
+      if (token && !endpoint.endsWith("addNewUser") && !endpoint.endsWith("loginUser")) {
         headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
     },
   }),
   endpoints: (builder) => ({
+    addNewUser: builder.mutation({
+      query: (payload) => ({
+        url: API_CONSTANTS.ADD_NEW_USER,
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    loginUser: builder.mutation({
+      query: (payload) => ({
+        url: API_CONSTANTS.LOGIN_USER,
+        method: "POST",
+        body: payload,
+      }),
+    }),
     getAllChats: builder.query({
       query: (username) => API_CONSTANTS.GET_ALL_CONVERSATIONS(username),
       transformResponse: getChatDetailsMapFromApi,
@@ -32,7 +46,14 @@ export const apiSlice = createApi({
         url: API_CONSTANTS.ADD_NEW_PRIVATE_CHAT(targetUsername),
         method: "POST",
       }),
-      onQueryStarted: (...args) => addChatToList(...args, apiSlice.util.updateQueryData),
+      onQueryStarted: async (_, { queryFulfilled, dispatch }) => {
+        try {
+          const { data: newChat } = await queryFulfilled;
+          dispatch(addChatToList(newChat));
+        } catch (e) {
+          console.error(e);
+        }
+      },
     }),
     createNewGroupChat: builder.mutation({
       query: (payload) => ({
@@ -40,7 +61,14 @@ export const apiSlice = createApi({
         method: "POST",
         body: payload,
       }),
-      onQueryStarted: (...args) => addChatToList(...args, apiSlice.util.updateQueryData),
+      onQueryStarted: async (_, { queryFulfilled, dispatch }) => {
+        try {
+          const { data: newChat } = await queryFulfilled;
+          dispatch(addChatToList(newChat));
+        } catch (e) {
+          console.error(e);
+        }
+      },
     }),
   }),
 });
@@ -53,6 +81,8 @@ export function addMessageToChat(chatId, message) {
 }
 
 export const {
+  useLoginUserMutation,
+  useAddNewUserMutation,
   useGetAllChatsQuery,
   useGetConversationMessageDetailsQuery,
   useLazyGetUsersByPrefixQuery,
