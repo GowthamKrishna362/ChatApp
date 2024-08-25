@@ -1,10 +1,20 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_CONSTANTS } from "Constants/apiUrlConstants.js";
+import { SESSION_STORAGE_KEYS } from "Constants/globalConstants.js";
 import { getChatDetailsMapFromApi } from "utils/chatUtils.js";
 import { addChatToList } from "utils/storeHelpers/mutationHelperUtils.js";
 
 export const apiSlice = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: API_CONSTANTS.API_BASE }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_CONSTANTS.API_BASE,
+    prepareHeaders: (headers) => {
+      const token = sessionStorage.getItem(SESSION_STORAGE_KEYS.JWT_TOKEN);
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     getAllChats: builder.query({
       query: (username) => API_CONSTANTS.GET_ALL_CONVERSATIONS(username),
@@ -18,10 +28,9 @@ export const apiSlice = createApi({
       transformResponse: (response) => response.users,
     }),
     createNewPrivateChat: builder.mutation({
-      query: (payload) => ({
-        url: API_CONSTANTS.ADD_NEW_PRIVATE_CHAT,
+      query: (targetUsername) => ({
+        url: API_CONSTANTS.ADD_NEW_PRIVATE_CHAT(targetUsername),
         method: "POST",
-        body: payload,
       }),
       onQueryStarted: (...args) => addChatToList(...args, apiSlice.util.updateQueryData),
     }),
@@ -37,14 +46,11 @@ export const apiSlice = createApi({
 });
 
 export function addMessageToChat(chatId, message) {
-  console.log(chatId , message);
-  
-  apiSlice.util.updateQueryData("getConversationMessageDetails", chatId, (draft) => {    
+  apiSlice.util.updateQueryData("getConversationMessageDetails", chatId, (draft) => {
     draft.push({ ...message, isTransient: true });
-    return draft
+    return draft;
   });
 }
-
 
 export const {
   useGetAllChatsQuery,

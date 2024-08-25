@@ -6,7 +6,7 @@ function useLoginUser() {
   return async function onLogin(username, password) {
     try {
       const res = await loginUser(username, password);
-      login(username);
+      login(username, res.data.token);
       return res;
     } catch (e) {
       return e;

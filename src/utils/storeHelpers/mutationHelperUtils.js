@@ -1,6 +1,5 @@
 import { getUsername } from "../globalUtils.js";
 
-// mutationHelpers.js
 export const addChatToList = async (payload, { dispatch, queryFulfilled }, updateQueryData) => {
   try {
     const { data: newChat } = await queryFulfilled;

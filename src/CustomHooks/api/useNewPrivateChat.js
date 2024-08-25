@@ -5,8 +5,7 @@ function useNewPrivateChat(closeModal) {
   const [triggerNewChat] = useCreateNewPrivateChatMutation();
   return async (targetUsername) => {
     try {
-      const username = getUsername();
-      await triggerNewChat({ fromUsername: username, targetUsername }).unwrap();
+      await triggerNewChat(targetUsername).unwrap();
       closeModal();
     } catch (error) {
       console.error("Failed to create a new chat:", error);

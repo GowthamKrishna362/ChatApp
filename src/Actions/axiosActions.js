@@ -10,15 +10,6 @@ function errorHandler(err, onError, throwError) {
   return err;
 }
 
-export function makeGetRequest(url, options = {}) {
-  const { throwError, onError, onSuccessDispatch } = options;
-  return axiosClient
-    .get(url)
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => errorHandler(err, onError, throwError));
-}
 
 export function makePostRequest(url, payload, options = {}) {
   console.log(url);
