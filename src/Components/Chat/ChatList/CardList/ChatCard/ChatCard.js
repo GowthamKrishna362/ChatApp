@@ -2,17 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { setSelectedChatId } from "features/chatSlice.js";
 import "./chatCard.scss";
-import { useChatContext } from "Contexts/ChatContext.js";
+import { useDispatch } from "react-redux";
 
-const ChatCard = ({ chatName, lastText = "321321314141", id }) => {
-  const { moveToChat } = useChatContext();
+const ChatCard = ({ chatName, id }) => {
+  const dispatch = useDispatch();
   return (
     <div
       className="chat-card"
       id={id}
       onClick={() => {
-        moveToChat({ id, chatName });
+        dispatch(setSelectedChatId(id));
       }}
     >
       <div className="chat-card__profile-picture">
@@ -20,7 +21,6 @@ const ChatCard = ({ chatName, lastText = "321321314141", id }) => {
       </div>
       <div className="chat-card__details">
         <div className="chat-name">{chatName}</div>
-        <div className="last-text">{lastText}</div>
       </div>
     </div>
   );
@@ -28,6 +28,7 @@ const ChatCard = ({ chatName, lastText = "321321314141", id }) => {
 
 ChatCard.propTypes = {
   chatName: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default ChatCard;

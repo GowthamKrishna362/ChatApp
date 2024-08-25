@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import useReactiveInput from "Components/Shared/ReactiveInput/useReactiveInput.js";
 import ReactiveInput from "Components/Shared/ReactiveInput/ReactiveInput.js";
-import useSendMessage from "CustomHooks/api/useSendMessage.js";
+import useSocketAction from "CustomHooks/api/useSocketAction.js";
 
 export default function ChatboxBottomPanel() {
-  const sendMessage = useSendMessage();
-  const { value, onChange, onKeyDown } = useReactiveInput({ onSubmit: sendMessage });
+  const { sendMessage } = useSocketAction();
+  const { value, onChange, onKeyDown } = useReactiveInput({ onSubmit: sendMessage, clearOnSubmit: true });
 
   return (
     <div className="chatbox-bottom-panel">

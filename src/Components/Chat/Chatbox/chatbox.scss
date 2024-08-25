@@ -1,14 +1,6 @@
-@import "~scss/base/_color.scss";
-
 .chatbox {
+  flex-grow: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  .top-panel {
-    background-color: $background-lighter;
-    height: 55px;
-    flex-shrink: 0;
-  }
-
-
 }

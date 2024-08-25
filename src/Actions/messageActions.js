@@ -1,8 +1,15 @@
-import { NEW_MESSAGE } from "Constants/apiUrlConstants.js";
+import { STOMP_ENDPOINTS} from "Constants/apiUrlConstants.js";
 
-export function sendMessage(stompClient, { sender, messageContent, conversationId, timestamp }) {
+export function sendSocketMessage(stompClient, message) {
   stompClient.publish({
-    destination: NEW_MESSAGE,
-    body: JSON.stringify({ sender, messageContent, conversationId, timestamp }),
+    destination: STOMP_ENDPOINTS.NEW_MESSAGE,
+    body: JSON.stringify(message),
   });
+}
+
+export function sendConversationOpenEvent(stompClient, payload) {
+  stompClient.publish({
+    destination: STOMP_ENDPOINTS.NEW_EVENT,
+    body: JSON.stringify(payload)
+  })
 }

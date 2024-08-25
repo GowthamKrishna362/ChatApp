@@ -1,21 +1,35 @@
+@import "~scss/base/_typography";
+
 .message {
   $green: #86bb71;
   $blue: #94c2ed;
   $orange: #e38968;
   $gray: #92959e;
 
-  flex-direction: column;
   color: white;
   padding: 8px 20px;
   line-height: 26px;
   font-size: 16px;
   border-radius: 7px;
   margin-bottom: 8px;
+  max-width: 80%;
+  white-space:pre-wrap;
+  word-break:break-word;
+
   &.other-user {
+    width: fit-content;
+    background-color: #2a3942;
     align-items: flex-start;
   }
   &.current-user {
     background: $green;
     align-self: flex-end;
+  }
+  &__timestamp {
+    @include font-h4($light);
+    position: relative;
+    float: right;
+    padding-left: 14px;  
+    top: 8px;  
   }
 }

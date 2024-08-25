@@ -4,6 +4,8 @@
     "moduleResolution": "nodenext",
     "paths": {
       "scss/*": ["src/scss/*"],
+      "utils/*": ["src/utils/*"],
+      "features/*": ["src/features/*"],
       "Components/*": ["src/Components/*"],
       "Actions/*": ["src/Actions/*"],
       "Constants/*": ["src/Constants/*"],
