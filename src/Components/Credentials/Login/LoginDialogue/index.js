@@ -1,9 +1,9 @@
-import React from "react";
-import ReactiveInput from "Components/Shared/ReactiveInput/ReactiveInput.js";
-import useReactiveInput from "Components/Shared/ReactiveInput/useReactiveInput.js";
-import { useLoginUserMutation } from "features/apiSlice.js";
-import { useAuth } from "Contexts/AuthContext.js";
-import { toast } from "react-toastify";
+import React from 'react';
+import ReactiveInput from 'Components/Shared/ReactiveInput/ReactiveInput.js';
+import useReactiveInput from 'Components/Shared/ReactiveInput/useReactiveInput.js';
+import { useLoginUserMutation } from 'features/apiSlice.js';
+import { useAuth } from 'Contexts/AuthContext.js';
+import { toast } from 'react-toastify';
 
 const LoginDialogue = () => {
   const [loginUserTrigger] = useLoginUserMutation();
@@ -14,7 +14,7 @@ const LoginDialogue = () => {
 
   const onSubmit = async () => {
     try {
-    const res = await loginUserTrigger({ username, password }).unwrap();
+      const res = await loginUserTrigger({ username, password }).unwrap();
       login(username, res.token);
     } catch (e) {
       toast(e?.data?.message);

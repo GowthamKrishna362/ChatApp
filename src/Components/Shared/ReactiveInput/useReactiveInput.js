@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { KEY_DOWN_IDS } from "Constants/globalConstants.js";
+import { useState } from 'react';
+import { KEY_DOWN_IDS } from 'Constants/globalConstants.js';
 
 export default function useReactiveInput({ initialValue, onSubmit } = {}) {
   const [value, setValue] = useState(initialValue);
@@ -7,7 +7,7 @@ export default function useReactiveInput({ initialValue, onSubmit } = {}) {
     setValue(e.target.value);
   }
   function clearInput() {
-    setValue('')
+    setValue('');
   }
   function onKeyDown(e) {
     if (e.keyCode === KEY_DOWN_IDS.KEY_ENTER) {

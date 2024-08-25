@@ -1,11 +1,11 @@
-import React from "react";
-import "./chatboxBottomPanel.scss";
-import { faSmile } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import useReactiveInput from "Components/Shared/ReactiveInput/useReactiveInput.js";
-import ReactiveInput from "Components/Shared/ReactiveInput/ReactiveInput.js";
-import useSocketAction from "CustomHooks/api/useSocketAction.js";
+import React from 'react';
+import './chatboxBottomPanel.scss';
+import { faSmile } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import useReactiveInput from 'Components/Shared/ReactiveInput/useReactiveInput.js';
+import ReactiveInput from 'Components/Shared/ReactiveInput/ReactiveInput.js';
+import useSocketAction from 'CustomHooks/api/useSocketAction.js';
 
 export default function ChatboxBottomPanel() {
   const { sendMessage } = useSocketAction();

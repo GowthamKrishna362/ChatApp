@@ -1,4 +1,4 @@
-import { useCreateNewPrivateChatMutation } from "features/apiSlice.js";
+import { useCreateNewPrivateChatMutation } from 'features/apiSlice.js';
 
 function useNewPrivateChat(closeModal) {
   const [triggerNewChat] = useCreateNewPrivateChatMutation();
@@ -7,7 +7,7 @@ function useNewPrivateChat(closeModal) {
       await triggerNewChat(targetUsername).unwrap();
       closeModal();
     } catch (error) {
-      console.error("Failed to create a new chat:", error);
+      console.error('Failed to create a new chat:', error);
     }
   };
 }

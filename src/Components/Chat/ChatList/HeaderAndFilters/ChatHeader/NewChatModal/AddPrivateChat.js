@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Select from "react-select";
-import useNewPrivateChat from "CustomHooks/api/useNewPrivateChat.js";
-import useSelectUser from "CustomHooks/useSelectUser.js";
+import React, { useState } from 'react';
+import Select from 'react-select';
+import useNewPrivateChat from 'CustomHooks/api/useNewPrivateChat.js';
+import useSelectUser from 'CustomHooks/useSelectUser.js';
 
 export default function AddPrivateChat({ closeModal }) {
-  const [targetUsername, setTargetUsername] = useState("");
+  const [targetUsername, setTargetUsername] = useState('');
   const onNewChat = useNewPrivateChat(closeModal);
   const { options, searchedUsersLoader, setSearchKey } = useSelectUser();
   return (

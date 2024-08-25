@@ -1,9 +1,9 @@
-import React, { useMemo } from "react";
-import ChatCard from "./ChatCard/ChatCard.js";
-import "./cardList.scss";
-import { getChatName } from "utils/chatUtils.js";
-import { useGetAllChatsQuery } from "features/apiSlice.js";
-import { getUsername } from "utils/globalUtils.js";
+import React, { useMemo } from 'react';
+import ChatCard from './ChatCard/ChatCard.js';
+import './cardList.scss';
+import { getChatName } from 'utils/chatUtils.js';
+import { useGetAllChatsQuery } from 'features/apiSlice.js';
+import { getUsername } from 'utils/globalUtils.js';
 
 const CardList = () => {
   const { data } = useGetAllChatsQuery(getUsername());

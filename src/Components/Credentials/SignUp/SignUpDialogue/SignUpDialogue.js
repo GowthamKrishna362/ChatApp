@@ -1,9 +1,9 @@
-import React from "react";
-import ReactiveInput from "Components/Shared/ReactiveInput/ReactiveInput.js";
-import useReactiveInput from "Components/Shared/ReactiveInput/useReactiveInput.js";
-import { useAddNewUserMutation } from "features/apiSlice.js";
-import { useAuth } from "Contexts/AuthContext.js";
-import { toast } from "react-toastify";
+import React from 'react';
+import ReactiveInput from 'Components/Shared/ReactiveInput/ReactiveInput.js';
+import useReactiveInput from 'Components/Shared/ReactiveInput/useReactiveInput.js';
+import { useAddNewUserMutation } from 'features/apiSlice.js';
+import { useAuth } from 'Contexts/AuthContext.js';
+import { toast } from 'react-toastify';
 
 function SignUpDialogue() {
   const { login } = useAuth();

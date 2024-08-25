@@ -1,15 +1,15 @@
-import React, { createContext, useState, useContext, useRef } from "react";
-import { Client } from "@stomp/stompjs";
-import { getUsername } from "utils/globalUtils.js";
-import { STOMP_ENDPOINTS } from "Constants/apiUrlConstants.js";
+import React, { createContext, useState, useContext, useRef } from 'react';
+import { Client } from '@stomp/stompjs';
+import { getUsername } from 'utils/globalUtils.js';
+import { STOMP_ENDPOINTS } from 'Constants/apiUrlConstants.js';
 import {
   addChatToList,
   addMessageToChat,
   markChatDelivered,
   updateLastOpened,
-} from "utils/storeHelpers/cacheUpdateUtils.js";
-import { useDispatch } from "react-redux";
-import { SOCKET_MESSAGE_TYPES } from "Constants/globalConstants.js";
+} from 'utils/storeHelpers/cacheUpdateUtils.js';
+import { useDispatch } from 'react-redux';
+import { SOCKET_MESSAGE_TYPES } from 'Constants/globalConstants.js';
 
 const StompContext = createContext();
 
@@ -45,10 +45,10 @@ export function StompProvider({ children }) {
   function enableExistingSubscriptions(client) {
     subscriptionListRef.current.forEach((conversationId) => {
       client.subscribe(STOMP_ENDPOINTS.USER_TOPIC_ENDPOINT(getUsername()), (message) =>
-        onMessageCallback(conversationId, message)
+        onMessageCallback(conversationId, message),
       );
       client.subscribe(STOMP_ENDPOINTS.TOPIC_ENDPOINT(conversationId), (message) =>
-        onMessageCallback(conversationId, message)
+        onMessageCallback(conversationId, message),
       );
     });
   }
@@ -76,7 +76,7 @@ export function StompProvider({ children }) {
   function addChatToSubscription(conversationId) {
     subscriptionListRef.current = [...subscriptionListRef.current, conversationId];
     stompClient.subscribe(STOMP_ENDPOINTS.TOPIC_ENDPOINT(conversationId), (message) =>
-      onMessageCallback(conversationId, message)
+      onMessageCallback(conversationId, message),
     );
   }
 

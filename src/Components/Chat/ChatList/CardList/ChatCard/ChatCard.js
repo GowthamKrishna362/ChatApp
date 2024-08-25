@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { setSelectedChatId } from "features/chatSlice.js";
-import "./chatCard.scss";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { setSelectedChatId } from 'features/chatSlice.js';
+import './chatCard.scss';
+import { useDispatch } from 'react-redux';
 
 const ChatCard = ({ chatName, id }) => {
   const dispatch = useDispatch();

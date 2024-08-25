@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import ReactDOM from "react-dom/client";
-import App from "./App.js";
-import { Provider } from "react-redux";
-import { AuthProvider } from "./Contexts/AuthContext.js";
-import { StompProvider } from "./Contexts/StompContext.js";
-import { BrowserRouter } from "react-router-dom";
-import store from "./store.js";
+import ReactDOM from 'react-dom/client';
+import App from './App.js';
+import { Provider } from 'react-redux';
+import { AuthProvider } from './Contexts/AuthContext.js';
+import { StompProvider } from './Contexts/StompContext.js';
+import { BrowserRouter } from 'react-router-dom';
+import store from './store.js';
 
-import "./scss/main.scss";
+import './scss/main.scss';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
       <AuthProvider>
@@ -19,5 +19,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </StompProvider>
       </AuthProvider>
     </BrowserRouter>
-  </Provider>
+  </Provider>,
 );

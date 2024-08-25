@@ -1,7 +1,7 @@
-import React from "react";
-import ChatHeader from "./ChatHeader/ChatHeader.js";
+import React from 'react';
+import ChatHeader from './ChatHeader/ChatHeader.js';
 
-import "./headerAndFilters.scss";
+import './headerAndFilters.scss';
 
 const HeaderAndFilters = () => {
   return (

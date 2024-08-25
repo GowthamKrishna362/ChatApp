@@ -1,20 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import "./reactiveInput.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import './reactiveInput.scss';
 
 const ReactiveInput = ({
   label = null,
-  type = "text",
-  value = "",
+  type = 'text',
+  value = '',
   onChange = () => {},
   isInline = false,
   placeholder = null,
-  onKeyDown = () => {}
+  onKeyDown = () => {},
 } = {}) => {
   return (
     <div className="reactive-input">
-      {label && <div className={classNames("reactive-input__label", { "d-inline-block": isInline })}>{label}</div>}
+      {label && <div className={classNames('reactive-input__label', { 'd-inline-block': isInline })}>{label}</div>}
       <input
         className="reactive-input__input"
         type={type}
@@ -34,7 +34,7 @@ ReactiveInput.propTypes = {
   onChange: PropTypes.func,
   isInline: PropTypes.bool,
   placeholder: PropTypes.string,
-  onKeyDown: PropTypes.func
+  onKeyDown: PropTypes.func,
 };
 
 export default ReactiveInput;
