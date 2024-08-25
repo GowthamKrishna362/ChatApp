@@ -1,5 +1,4 @@
 import { useCreateNewPrivateChatMutation } from "features/apiSlice.js";
-import { getUsername } from "utils/globalUtils.js";
 
 function useNewPrivateChat(closeModal) {
   const [triggerNewChat] = useCreateNewPrivateChatMutation();

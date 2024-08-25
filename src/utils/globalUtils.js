@@ -12,6 +12,10 @@ export function getUsername() {
   return getItemFromSessionStorage(SESSION_STORAGE_KEYS.USERNAME);
 }
 
+export function getJwtToken() {
+  return getItemFromSessionStorage(SESSION_STORAGE_KEYS.JWT_TOKEN);
+}
+
 export function getHumanizedMessageTimeStamp() {
   const date = new Date();
   const options = {

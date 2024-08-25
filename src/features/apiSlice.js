@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_CONSTANTS } from "Constants/apiUrlConstants.js";
-import { SESSION_STORAGE_KEYS } from "Constants/globalConstants.js";
 import { getChatDetailsMapFromApi } from "utils/chatUtils.js";
+import { getJwtToken } from "utils/globalUtils.js";
 import { addChatToList } from "utils/storeHelpers/cacheUpdateUtils.js";
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_CONSTANTS.API_BASE,
     prepareHeaders: (headers, { endpoint }) => {
-      const token = sessionStorage.getItem(SESSION_STORAGE_KEYS.JWT_TOKEN);
+      const token = getJwtToken();
       if (token && !endpoint.endsWith("addNewUser") && !endpoint.endsWith("loginUser")) {
         headers.set("Authorization", `Bearer ${token}`);
       }
@@ -72,13 +72,6 @@ export const apiSlice = createApi({
     }),
   }),
 });
-
-export function addMessageToChat(chatId, message) {
-  apiSlice.util.updateQueryData("getConversationMessageDetails", chatId, (draft) => {
-    draft.push({ ...message, isTransient: true });
-    return draft;
-  });
-}
 
 export const {
   useLoginUserMutation,
