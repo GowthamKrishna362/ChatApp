@@ -1,21 +1,22 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import "./message.scss";
-import { getHumanizedMessageTimeStamp, getUsername } from "utils/globalUtils.js";
+import { getHumanizedMessageTimeStamp, getUsername } from 'utils/globalUtils.js';
+
+import './message.scss';
 
 function Message({ message, otherUserLastOpened = null }) {
   const { sender, messageContent, timeStamp, isTransient } = message;
-  
-  let messageDeliveryStatus = "";
+
+  let messageDeliveryStatus = '';
   if (sender === getUsername() && otherUserLastOpened) {
-    messageDeliveryStatus = isTransient ? "U" : "D";
+    messageDeliveryStatus = isTransient ? 'U' : 'D';
     const otherUserLastOpenedDate = new Date(otherUserLastOpened);
     const currMessageDate = new Date(timeStamp);
 
     if (otherUserLastOpenedDate > currMessageDate) {
-      messageDeliveryStatus = "R";
+      messageDeliveryStatus = 'R';
     }
   }
 
@@ -23,7 +24,7 @@ function Message({ message, otherUserLastOpened = null }) {
   const isFromCurrentUser = sender === currentUsername;
 
   return (
-    <div className={classNames("message", { "other-user": !isFromCurrentUser, "current-user": isFromCurrentUser })}>
+    <div className={classNames('message', { 'other-user': !isFromCurrentUser, 'current-user': isFromCurrentUser })}>
       <span className="message__content"> {messageContent}</span>
       <span className="message__timestamp">
         {getHumanizedMessageTimeStamp(timeStamp)}

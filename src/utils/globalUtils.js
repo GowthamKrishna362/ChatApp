@@ -1,4 +1,4 @@
-import { SESSION_STORAGE_KEYS } from "Constants/globalConstants.js";
+import { SESSION_STORAGE_KEYS } from 'Constants/globalConstants.js';
 
 export function getItemFromSessionStorage(id) {
   const item = sessionStorage.getItem(id);
@@ -19,10 +19,10 @@ export function getJwtToken() {
 export function getHumanizedMessageTimeStamp() {
   const date = new Date();
   const options = {
-    hour: "2-digit",
-    minute: "2-digit",
+    hour: '2-digit',
+    minute: '2-digit',
     hour12: false,
   };
-  const formattedTime = date.toLocaleTimeString("en-US", options);
+  const formattedTime = date.toLocaleTimeString('en-US', options);
   return formattedTime;
 }

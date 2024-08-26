@@ -1,6 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./dialogueLayout.scss";
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import './dialogueLayout.scss';
 
 function DialogueLayout({ children }) {
   return (

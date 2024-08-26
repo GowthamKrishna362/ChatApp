@@ -1,5 +1,5 @@
-import { useCreateNewGroupChatMutation } from "features/apiSlice.js";
-import { getUsername } from "utils/globalUtils.js";
+import { useCreateNewGroupChatMutation } from 'features/apiSlice.js';
+import { getUsername } from 'utils/globalUtils.js';
 
 function useNewGroupChat(closeModal) {
   const [triggerNewGroupChat] = useCreateNewGroupChatMutation();
@@ -9,7 +9,7 @@ function useNewGroupChat(closeModal) {
       await triggerNewGroupChat({ fromUsername: username, targetUsernames, conversationName: groupName }).unwrap();
       closeModal();
     } catch (error) {
-      console.error("Failed to create a new chat:", error);
+      console.error('Failed to create a new chat:', error);
     }
   };
 }

@@ -1,7 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useAuth } from "Contexts/AuthContext.js";
-import { Navigate } from "react-router-dom";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+
+import { useAuth } from 'Contexts/AuthContext.js';
 
 function ProtectedRoute({ children }) {
   const { isLoggedIn } = useAuth();
@@ -12,7 +13,7 @@ function ProtectedRoute({ children }) {
 }
 
 ProtectedRoute.propTypes = {
-    children: PropTypes.element
+  children: PropTypes.element,
 };
 
 export default ProtectedRoute;

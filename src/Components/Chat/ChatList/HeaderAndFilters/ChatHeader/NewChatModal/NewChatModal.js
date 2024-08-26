@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Modal from "react-modal";
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import Modal from 'react-modal';
 
-import "./newChatModal.scss";
-import AddPrivateChat from "./AddPrivateChat.js";
-import { CHAT_TYPES } from "Constants/globalConstants.js";
-import AddGroupChat from "./AddGroupChat.js";
+import { CHAT_TYPES } from 'Constants/globalConstants.js';
+
+import AddGroupChat from './AddGroupChat.js';
+import AddPrivateChat from './AddPrivateChat.js';
+import './newChatModal.scss';
+
 function NewChatModal({ isOpen, closeModal, defaultStyles }) {
   const [selectedOption, setSelectedOption] = useState(CHAT_TYPES.PRIVATE);
   const handleChange = (event) => {

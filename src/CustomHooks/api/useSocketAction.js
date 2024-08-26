@@ -1,9 +1,10 @@
-import { sendConversationOpenEvent, sendSocketMessage } from "Actions/messageActions.js";
-import { useStompContext } from "Contexts/StompContext.js";
-import { selectCurrentChatId } from "features/selectors.js";
-import { useDispatch, useSelector } from "react-redux";
-import { getConversationOpenEvent, getMessageObj } from "utils/messageUtils.js";
-import { addMessageToChat } from "utils/storeHelpers/cacheUpdateUtils.js";
+import { useDispatch, useSelector } from 'react-redux';
+
+import { sendConversationOpenEvent, sendSocketMessage } from 'Actions/messageActions.js';
+import { useStompContext } from 'Contexts/StompContext.js';
+import { selectCurrentChatId } from 'features/selectors.js';
+import { getConversationOpenEvent, getMessageObj } from 'utils/messageUtils.js';
+import { addMessageToChat } from 'utils/storeHelpers/cacheUpdateUtils.js';
 
 function useSocketAction() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function useSocketAction() {
     sendConversationOpenEvent(stompClient, conversationOpenEvent);
   }
 
-  return { sendMessage , sendConversationOpen};
+  return { sendMessage, sendConversationOpen };
 }
 
 export default useSocketAction;

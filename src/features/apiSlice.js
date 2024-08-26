@@ -1,16 +1,17 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { API_CONSTANTS } from "Constants/apiUrlConstants.js";
-import { getChatDetailsMapFromApi } from "utils/chatUtils.js";
-import { getJwtToken } from "utils/globalUtils.js";
-import { addChatToList } from "utils/storeHelpers/cacheUpdateUtils.js";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+import { API_CONSTANTS } from 'Constants/apiUrlConstants.js';
+import { getChatDetailsMapFromApi } from 'utils/chatUtils.js';
+import { getJwtToken } from 'utils/globalUtils.js';
+import { addChatToList } from 'utils/storeHelpers/cacheUpdateUtils.js';
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_CONSTANTS.API_BASE,
     prepareHeaders: (headers, { endpoint }) => {
       const token = getJwtToken();
-      if (token && !endpoint.endsWith("addNewUser") && !endpoint.endsWith("loginUser")) {
-        headers.set("Authorization", `Bearer ${token}`);
+      if (token && !endpoint.endsWith('addNewUser') && !endpoint.endsWith('loginUser')) {
+        headers.set('Authorization', `Bearer ${token}`);
       }
       return headers;
     },
@@ -19,14 +20,14 @@ export const apiSlice = createApi({
     addNewUser: builder.mutation({
       query: (payload) => ({
         url: API_CONSTANTS.ADD_NEW_USER,
-        method: "POST",
+        method: 'POST',
         body: payload,
       }),
     }),
     loginUser: builder.mutation({
       query: (payload) => ({
         url: API_CONSTANTS.LOGIN_USER,
-        method: "POST",
+        method: 'POST',
         body: payload,
       }),
     }),
@@ -44,7 +45,7 @@ export const apiSlice = createApi({
     createNewPrivateChat: builder.mutation({
       query: (targetUsername) => ({
         url: API_CONSTANTS.ADD_NEW_PRIVATE_CHAT(targetUsername),
-        method: "POST",
+        method: 'POST',
       }),
       onQueryStarted: async (_, { queryFulfilled, dispatch }) => {
         try {
@@ -58,7 +59,7 @@ export const apiSlice = createApi({
     createNewGroupChat: builder.mutation({
       query: (payload) => ({
         url: API_CONSTANTS.ADD_NEW_GROUP_CHAT,
-        method: "POST",
+        method: 'POST',
         body: payload,
       }),
       onQueryStarted: async (_, { queryFulfilled, dispatch }) => {

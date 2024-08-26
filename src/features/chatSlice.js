@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const INITIAL_STATE = {
   selectedChatId: null,
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 
 export const chatSlice = createSlice({
-  name: "chat",
+  name: 'chat',
   initialState: INITIAL_STATE,
   reducers: {
     setSelectedChatId: (state, { payload }) => {

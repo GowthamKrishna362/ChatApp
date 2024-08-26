@@ -1,6 +1,8 @@
-import React from "react";
-import LoginDialogue from "./LoginDialogue/index.js";
-import DialogueLayout from "Components/Shared/Layouts/DialogueLayout/DialogueLayout.js";
+import React from 'react';
+
+import DialogueLayout from 'Components/Shared/Layouts/DialogueLayout/DialogueLayout.js';
+
+import LoginDialogue from './LoginDialogue/index.js';
 
 const Login = () => {
   return (
