@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import useSelectUser from 'CustomHooks/useSelectUser.js';
+
 import ReactiveInput from 'Components/Shared/ReactiveInput/ReactiveInput.js';
 import useReactiveInput from 'Components/Shared/ReactiveInput/useReactiveInput.js';
 import useNewGroupChat from 'CustomHooks/api/useNewGroupChat.js';
+import useSelectUser from 'CustomHooks/useSelectUser.js';
 
 export default function AddGroupChat({ closeModal }) {
   const [targetUsernames, setTargetUsernames] = useState('');

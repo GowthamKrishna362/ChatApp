@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import ChatboxBottomPanel from './ChatboxBottomPanel/ChatboxBottomPanel.js';
-import MessageViewport from './MessageViewport/MessageViewport.js';
-import ChatboxTopPanel from './ChatboxTopPanel/ChatboxTopPanel.js';
+import { useSelector } from 'react-redux';
+
+import useSocketAction from 'CustomHooks/api/useSocketAction.js';
 import { useGetConversationMessageDetailsQuery } from 'features/apiSlice.js';
 import { selectCurrentChatId } from 'features/selectors.js';
-import useSocketAction from 'CustomHooks/api/useSocketAction.js';
 
+import ChatboxBottomPanel from './ChatboxBottomPanel/ChatboxBottomPanel.js';
+import ChatboxTopPanel from './ChatboxTopPanel/ChatboxTopPanel.js';
+import MessageViewport from './MessageViewport/MessageViewport.js';
 import './chatbox.scss';
-import { useSelector } from 'react-redux';
 
 const Chatbox = () => {
   const selectedChatId = useSelector(selectCurrentChatId);

@@ -1,9 +1,10 @@
 import React from 'react';
+import { toast } from 'react-toastify';
+
 import ReactiveInput from 'Components/Shared/ReactiveInput/ReactiveInput.js';
 import useReactiveInput from 'Components/Shared/ReactiveInput/useReactiveInput.js';
-import { useLoginUserMutation } from 'features/apiSlice.js';
 import { useAuth } from 'Contexts/AuthContext.js';
-import { toast } from 'react-toastify';
+import { useLoginUserMutation } from 'features/apiSlice.js';
 
 const LoginDialogue = () => {
   const [loginUserTrigger] = useLoginUserMutation();

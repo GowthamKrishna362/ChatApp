@@ -1,9 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import { getHumanizedMessageTimeStamp, getUsername } from 'utils/globalUtils.js';
 
 import './message.scss';
-import { getHumanizedMessageTimeStamp, getUsername } from 'utils/globalUtils.js';
 
 function Message({ message, otherUserLastOpened = null }) {
   const { sender, messageContent, timeStamp, isTransient } = message;

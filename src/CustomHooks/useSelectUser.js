@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
-import useDebounce from 'CustomHooks/useDebounce.js';
+
 import { DEBOUNCE_INTERVAL } from 'Constants/globalConstants.js';
+import useDebounce from 'CustomHooks/useDebounce.js';
 import { useLazyGetUsersByPrefixQuery } from 'features/apiSlice.js';
 
 export default function useSelectUser() {

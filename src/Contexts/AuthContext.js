@@ -1,6 +1,7 @@
 import React, { useState, createContext, useContext } from 'react';
-import { SESSION_STORAGE_KEYS } from 'Constants/globalConstants.js';
 import { useNavigate } from 'react-router-dom';
+
+import { SESSION_STORAGE_KEYS } from 'Constants/globalConstants.js';
 import { getUsername } from 'utils/globalUtils.js';
 
 const AuthContext = createContext(null);

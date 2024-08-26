@@ -1,13 +1,14 @@
-import React from 'react';
-import { getChatName, getCurrentChatDetails } from 'utils/chatUtils.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { useGetAllChatsQuery } from 'features/apiSlice.js';
+import { selectCurrentChatId } from 'features/selectors.js';
+import { getChatName, getCurrentChatDetails } from 'utils/chatUtils.js';
+import { getUsername } from 'utils/globalUtils.js';
 
 import './chatboxTopPanel.scss';
-import { useSelector } from 'react-redux';
-import { selectCurrentChatId } from 'features/selectors.js';
-import { useGetAllChatsQuery } from 'features/apiSlice.js';
-import { getUsername } from 'utils/globalUtils.js';
 
 export default function ChatboxTopPanel() {
   const { data: chatDetailsMap } = useGetAllChatsQuery(getUsername());

@@ -1,15 +1,16 @@
-import React, { createContext, useState, useContext, useRef } from 'react';
 import { Client } from '@stomp/stompjs';
-import { getUsername } from 'utils/globalUtils.js';
+import React, { createContext, useState, useContext, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { STOMP_ENDPOINTS } from 'Constants/apiUrlConstants.js';
+import { SOCKET_MESSAGE_TYPES } from 'Constants/globalConstants.js';
+import { getUsername } from 'utils/globalUtils.js';
 import {
   addChatToList,
   addMessageToChat,
   markChatDelivered,
   updateLastOpened,
 } from 'utils/storeHelpers/cacheUpdateUtils.js';
-import { useDispatch } from 'react-redux';
-import { SOCKET_MESSAGE_TYPES } from 'Constants/globalConstants.js';
 
 const StompContext = createContext();
 

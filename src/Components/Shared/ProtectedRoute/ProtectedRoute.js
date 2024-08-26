@@ -1,7 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { useAuth } from 'Contexts/AuthContext.js';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
+
+import { useAuth } from 'Contexts/AuthContext.js';
 
 function ProtectedRoute({ children }) {
   const { isLoggedIn } = useAuth();

@@ -1,5 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+
 import DialogueLayout from '../Shared/Layouts/DialogueLayout/DialogueLayout.js';
 
 function Credentials(props) {

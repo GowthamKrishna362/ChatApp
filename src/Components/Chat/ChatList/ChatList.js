@@ -1,8 +1,9 @@
 import React from 'react';
-import HeaderAndFilters from './HeaderAndFilters/HeaderAndFilters.js';
-import CardList from './CardList/CardList.js';
+
 import useAllConversations from 'CustomHooks/api/useAllConversations.js';
 
+import CardList from './CardList/CardList.js';
+import HeaderAndFilters from './HeaderAndFilters/HeaderAndFilters.js';
 import './chatList.scss';
 
 const ChatList = () => {

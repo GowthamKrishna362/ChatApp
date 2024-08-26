@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
+
 import { useStompContext } from 'Contexts/StompContext.js';
-import { getUsername } from 'utils/globalUtils.js';
 import { useGetAllChatsQuery } from 'features/apiSlice.js';
+import { getUsername } from 'utils/globalUtils.js';
 
 function useAllConversations() {
   const { data: allChats, isSuccess } = useGetAllChatsQuery(getUsername());

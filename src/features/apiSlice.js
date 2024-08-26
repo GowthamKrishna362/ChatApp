@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { API_CONSTANTS } from 'Constants/apiUrlConstants.js';
 import { getChatDetailsMapFromApi } from 'utils/chatUtils.js';
 import { getJwtToken } from 'utils/globalUtils.js';

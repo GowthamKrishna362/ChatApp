@@ -1,8 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import { getUsername } from 'utils/globalUtils.js';
+
 import Message from './Message/Message.js';
 import './messageViewport.scss';
-import { getUsername } from 'utils/globalUtils.js';
 
 function MessageViewport({ messageDetails }) {
   const { messages = [], conversationLastOpenedList = [] } = messageDetails;

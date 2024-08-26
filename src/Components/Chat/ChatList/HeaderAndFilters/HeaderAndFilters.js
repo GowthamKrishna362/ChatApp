@@ -1,6 +1,6 @@
 import React from 'react';
-import ChatHeader from './ChatHeader/ChatHeader.js';
 
+import ChatHeader from './ChatHeader/ChatHeader.js';
 import './headerAndFilters.scss';
 
 const HeaderAndFilters = () => {
