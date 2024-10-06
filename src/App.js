@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PAGE_ROUTES } from 'Constants/pageRoutes.js';
 
 import 'scss/base/common.scss';
 
@@ -15,11 +16,11 @@ const App = () => {
     <>
       <ToastContainer />
       <Routes>
-        <Route path="/" exact element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/" exact element={<Navigate to={PAGE_ROUTES.LOGIN} />} />
+        <Route path={PAGE_ROUTES.LOGIN} element={<Login />} />
+        <Route path={PAGE_ROUTES.SIGNUP} element={<SignUp />} />
         <Route
-          path="/chat"
+          path={PAGE_ROUTES.CHAT}
           element={
             <ProtectedRoute>
               <Chat />

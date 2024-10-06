@@ -1,4 +1,4 @@
-import { STOMP_ENDPOINTS } from 'Constants/apiUrlConstants.js';
+import { STOMP_ENDPOINTS } from "Constants/apiUrlConstants.js";
 
 export function sendSocketMessage(stompClient, message) {
   stompClient.publish({
@@ -10,6 +10,20 @@ export function sendSocketMessage(stompClient, message) {
 export function sendConversationOpenEvent(stompClient, payload) {
   stompClient.publish({
     destination: STOMP_ENDPOINTS.NEW_EVENT,
+    body: JSON.stringify(payload),
+  });
+}
+
+export function sendInitiateVideoCallMessage(stompClient, payload) {
+  stompClient.publish({
+    destination: STOMP_ENDPOINTS.INIITIATE_VIDEO_CALL,
+    body: JSON.stringify(payload),
+  });
+}
+
+export function sendPeerIdMessage(stompClient, payload) {
+  stompClient.publish({
+    destination: STOMP_ENDPOINTS.SHARE_PEER_ID,
     body: JSON.stringify(payload),
   });
 }

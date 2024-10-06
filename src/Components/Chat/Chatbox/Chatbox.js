@@ -16,10 +16,11 @@ const Chatbox = () => {
   const { sendConversationOpen } = useSocketAction();
 
   useEffect(() => {
+    // Send conversation open if new messages come in for read receipt of new messages
     if (selectedChatId) {
       sendConversationOpen();
     }
-  }, [messageDetails]);
+  }, [messageDetails?.messages?.length]);
 
   return (
     <div className="chatbox">

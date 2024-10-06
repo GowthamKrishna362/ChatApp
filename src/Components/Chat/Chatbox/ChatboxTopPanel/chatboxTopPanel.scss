@@ -19,4 +19,11 @@
       align-self: center;
     }
   }
+  .video-icon {
+    @include font-large();
+    color: $light-gray;
+    justify-self: flex-end;
+    margin-left: auto;
+    margin-right: 24px;
+  }
 }
