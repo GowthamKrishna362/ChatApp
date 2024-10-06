@@ -7,13 +7,14 @@ import useModal from 'CustomHooks/useModal.js';
 
 import NewChatModal from './NewChatModal/NewChatModal.js';
 import './chatHeader.scss';
+import { getUsername } from 'utils/globalUtils.js';
 
 const ChatHeader = () => {
   const modalProps = useModal();
   const { openModal } = modalProps;
   return (
     <div className="chat-header">
-      <div className="header-text">Chats</div>
+      <div className="header-text">{getUsername()}&apos;s Chats</div>
       <div className="header-icons">
         <FontAwesomeIcon className="clickable" icon={faPlus} onClick={openModal} />
         <NewChatModal {...modalProps} />
