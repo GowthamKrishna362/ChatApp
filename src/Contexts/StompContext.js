@@ -1,25 +1,26 @@
-import { Client } from '@stomp/stompjs';
-import React, { createContext, useState, useContext, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { Client } from "@stomp/stompjs";
+import React, { createContext, useState, useContext, useRef } from "react";
+import { useDispatch } from "react-redux";
 
-import { STOMP_ENDPOINTS } from 'Constants/apiUrlConstants.js';
-import { SOCKET_MESSAGE_TYPES } from 'Constants/globalConstants.js';
-import { getUsername } from 'utils/globalUtils.js';
+import { STOMP_ENDPOINTS } from "Constants/apiUrlConstants.js";
+import { SOCKET_MESSAGE_TYPES } from "Constants/globalConstants.js";
+import { getAuthorizationHeader, getUsername } from "utils/globalUtils.js";
 import {
   addChatToList,
   addMessageToChat,
   markChatDelivered,
   updateLastOpened,
-} from 'utils/storeHelpers/cacheUpdateUtils.js';
+} from "utils/storeHelpers/cacheUpdateUtils.js";
 
 const StompContext = createContext();
 
 export function StompProvider({ children }) {
   const dispatch = useDispatch();
+  const [isConnected, setIsConnected] = useState(false);
   const [stompClient, setStompClient] = useState();
   const subscriptionListRef = useRef([]);
 
-  function onMessageCallback(conversationId, message) {
+  function onConversationMessagesCallback(conversationId, message) {
     const messageBody = JSON.parse(message.body);
     switch (messageBody.socketMessageType) {
       case SOCKET_MESSAGE_TYPES.CHAT_MESSAGE:
@@ -44,13 +45,17 @@ export function StompProvider({ children }) {
   }
 
   function enableExistingSubscriptions(client) {
-    subscriptionListRef.current.forEach((conversationId) => {
-      client.subscribe(STOMP_ENDPOINTS.USER_TOPIC_ENDPOINT(getUsername()), (message) =>
-        onMessageCallback(conversationId, message),
-      );
-      client.subscribe(STOMP_ENDPOINTS.TOPIC_ENDPOINT(conversationId), (message) =>
-        onMessageCallback(conversationId, message),
-      );
+    subscriptionListRef.current.forEach((subscription) => {
+      if (subscription.type === "CONVERSATION_MESSAGES") {
+        client.subscribe(STOMP_ENDPOINTS.TOPIC_ENDPOINT(subscription.id), (message) =>
+          onConversationMessagesCallback(subscription.id, message)
+        );
+      }
+      if (subscription.type === "SIGNALLING") {
+        client.subscribe(STOMP_ENDPOINTS.USER_TOPIC_ENDPOINT(getUsername()), (message) =>
+          subscription.callback(message)
+        );
+      }
     });
   }
 
@@ -61,8 +66,15 @@ export function StompProvider({ children }) {
         reconnectDelay: 5000,
         heartbeatIncoming: 4000,
         heartbeatOutgoing: 4000,
+        connectHeaders: {
+          Authorization: getAuthorizationHeader(),
+        },
         onConnect: () => {
           enableExistingSubscriptions(client);
+          setIsConnected(true);
+        },
+        onDisconnect: () => {
+          setIsConnected(false);
         },
       });
       client.activate();
@@ -70,21 +82,29 @@ export function StompProvider({ children }) {
     }
   }
 
-  function updateSubscriptionList(newSubscriptionList) {
-    subscriptionListRef.current = newSubscriptionList;
+  function addChatToSubscription(conversationId) {
+    subscriptionListRef.current = [
+      ...subscriptionListRef.current,
+      { type: "CONVERSATION_MESSAGES", id: conversationId },
+    ];
+    if (isConnected) {
+      stompClient.subscribe(STOMP_ENDPOINTS.TOPIC_ENDPOINT(conversationId), (message) =>
+        onConversationMessagesCallback(conversationId, message)
+      );
+    }
   }
 
-  function addChatToSubscription(conversationId) {
-    subscriptionListRef.current = [...subscriptionListRef.current, conversationId];
-    stompClient.subscribe(STOMP_ENDPOINTS.TOPIC_ENDPOINT(conversationId), (message) =>
-      onMessageCallback(conversationId, message),
-    );
+  function subscribeForVideoSignalling(callback) {
+    subscriptionListRef.current = [...subscriptionListRef.current, { type: "SIGNALLING", callback }];
+    if (isConnected) {
+      stompClient.subscribe(STOMP_ENDPOINTS.TOPIC_ENDPOINT(getUsername()), (message) => callback(message));
+    }
   }
 
   const contextItems = {
     addChatToSubscription,
-    updateSubscriptionList,
     initializeStompClient,
+    subscribeForVideoSignalling,
     stompClient,
   };
   return <StompContext.Provider value={contextItems}>{children}</StompContext.Provider>;

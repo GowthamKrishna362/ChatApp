@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { API_CONSTANTS } from 'Constants/apiUrlConstants.js';
 import { getChatDetailsMapFromApi } from 'utils/chatUtils.js';
-import { getJwtToken } from 'utils/globalUtils.js';
+import { getAuthorizationHeader, getJwtToken } from 'utils/globalUtils.js';
 import { addChatToList } from 'utils/storeHelpers/cacheUpdateUtils.js';
 
 export const apiSlice = createApi({
@@ -11,7 +11,7 @@ export const apiSlice = createApi({
     prepareHeaders: (headers, { endpoint }) => {
       const token = getJwtToken();
       if (token && !endpoint.endsWith('addNewUser') && !endpoint.endsWith('loginUser')) {
-        headers.set('Authorization', `Bearer ${token}`);
+        headers.set('Authorization', getAuthorizationHeader());
       }
       return headers;
     },

@@ -13,6 +13,10 @@
     flex-direction: column;
     margin: 14px;
   }
+  &__label {
+    @include font-h4($semibold);
+    
+  }
   a {
     margin-top: 8px;
   }

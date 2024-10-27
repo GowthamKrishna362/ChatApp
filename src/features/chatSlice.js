@@ -1,12 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   selectedChatId: null,
   chatDetailsMap: {},
+  isVideoChatOpen: false,
+  videoChatDetails: {},
 };
 
 export const chatSlice = createSlice({
-  name: 'chat',
+  name: "chat",
   initialState: INITIAL_STATE,
   reducers: {
     setSelectedChatId: (state, { payload }) => {
@@ -15,4 +17,4 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { setSelectedChatId } = chatSlice.actions;
+export const { setSelectedChatId, setIsVideoChatOpen } = chatSlice.actions;
