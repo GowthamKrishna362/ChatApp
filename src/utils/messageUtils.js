@@ -1,8 +1,8 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
-import { SOCKET_MESSAGE_TYPES } from 'Constants/globalConstants.js';
+import { SOCKET_MESSAGE_TYPES } from "Constants/globalConstants.js";
 
-import { getUsername } from './globalUtils.js';
+import { getUsername } from "./globalUtils.js";
 
 export function getMessageObj(messageContent, conversationId) {
   return {
@@ -21,5 +21,22 @@ export function getConversationOpenEvent(conversationId) {
     username: getUsername(),
     conversationId,
     timeStamp: new Date().toISOString(),
+  };
+}
+
+export function getInitiateVideoCallRequest(recipient) {
+  return {
+    socketMessageType: SOCKET_MESSAGE_TYPES.REQUEST_VIDEO,
+    timeStamp: new Date().toISOString(),
+    recipient,
+  };
+}
+
+export function getSharePeerIdDto(recipient, peerId) {
+  return {
+    socketMessageType: SOCKET_MESSAGE_TYPES.SHARE_PEER_ID,
+    timeStamp: new Date().toISOString(),
+    recipient,
+    peerId,
   };
 }

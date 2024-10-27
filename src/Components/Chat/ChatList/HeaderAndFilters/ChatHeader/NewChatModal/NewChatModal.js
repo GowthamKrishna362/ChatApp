@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import Modal from 'react-modal';
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import Modal from "react-modal";
 
-import { CHAT_TYPES } from 'Constants/globalConstants.js';
+import { CHAT_TYPES } from "Constants/globalConstants.js";
 
-import AddGroupChat from './AddGroupChat.js';
-import AddPrivateChat from './AddPrivateChat.js';
-import './newChatModal.scss';
+import AddGroupChat from "./AddGroupChat.js";
+import AddPrivateChat from "./AddPrivateChat.js";
+import "./newChatModal.scss";
 
 function NewChatModal({ isOpen, closeModal, defaultStyles }) {
   const [selectedOption, setSelectedOption] = useState(CHAT_TYPES.PRIVATE);
@@ -15,7 +15,13 @@ function NewChatModal({ isOpen, closeModal, defaultStyles }) {
   };
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={closeModal} style={defaultStyles} portalClassName="new-chat-modal">
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+      style={defaultStyles}
+      shouldCloseOnEsc
+      portalClassName="new-chat-modal"
+    >
       <div className="signup-dialogue dialogue-box">
         <div className="dialogue-box__header-wpr">New Chat</div>
         <div>

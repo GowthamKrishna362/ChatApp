@@ -1,10 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import { sendConversationOpenEvent, sendSocketMessage } from 'Actions/messageActions.js';
-import { useStompContext } from 'Contexts/StompContext.js';
-import { selectCurrentChatId } from 'features/selectors.js';
-import { getConversationOpenEvent, getMessageObj } from 'utils/messageUtils.js';
-import { addMessageToChat } from 'utils/storeHelpers/cacheUpdateUtils.js';
+import {
+  sendConversationOpenEvent,
+  sendInitiateVideoCallMessage,
+  sendPeerIdMessage,
+  sendSocketMessage,
+} from "Actions/messageActions.js";
+import { useStompContext } from "Contexts/StompContext.js";
+import { selectCurrentChatId } from "features/selectors.js";
+import {
+  getConversationOpenEvent,
+  getInitiateVideoCallRequest,
+  getMessageObj,
+  getSharePeerIdDto,
+} from "utils/messageUtils.js";
+import { addMessageToChat } from "utils/storeHelpers/cacheUpdateUtils.js";
 
 function useSocketAction() {
   const dispatch = useDispatch();
@@ -23,7 +33,19 @@ function useSocketAction() {
     sendConversationOpenEvent(stompClient, conversationOpenEvent);
   }
 
-  return { sendMessage, sendConversationOpen };
+  function sendInitiateVideoCall(recipient) {
+    const initiateVideoCallRequest = getInitiateVideoCallRequest(recipient);
+    sendInitiateVideoCallMessage(stompClient, initiateVideoCallRequest);
+  }
+
+  function sendPeerId(recipient, peerId) {
+    const peerIdDto = getSharePeerIdDto(recipient, peerId);
+    console.log(peerIdDto);
+    
+    sendPeerIdMessage(stompClient, peerIdDto);
+  }
+
+  return { sendMessage, sendConversationOpen, sendInitiateVideoCall, sendPeerId };
 }
 
 export default useSocketAction;

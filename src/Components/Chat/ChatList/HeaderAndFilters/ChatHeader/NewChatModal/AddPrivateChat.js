@@ -17,12 +17,10 @@ export default function AddPrivateChat({ closeModal }) {
         onChange={(item) => {
           setTargetUsername(item.value);
         }}
+        placeholder="Enter username"
       />
       <button type="submit" onClick={() => onNewChat(targetUsername)}>
         Submit
-      </button>
-      <button type="close" onClick={closeModal}>
-        Close
       </button>
     </>
   );

@@ -5,6 +5,7 @@ import ReactiveInput from 'Components/Shared/ReactiveInput/ReactiveInput.js';
 import useReactiveInput from 'Components/Shared/ReactiveInput/useReactiveInput.js';
 import { useAuth } from 'Contexts/AuthContext.js';
 import { useAddNewUserMutation } from 'features/apiSlice.js';
+import { PAGE_ROUTES } from 'Constants/pageRoutes.js';
 
 function SignUpDialogue() {
   const { login } = useAuth();
@@ -32,7 +33,7 @@ function SignUpDialogue() {
         <button type="submit" onClick={() => onSubmit()}>
           Submit
         </button>
-        <a href="/login">Existing user?</a>
+        <a href={PAGE_ROUTES.LOGIN}>Existing user?</a>
       </div>
     </div>
   );

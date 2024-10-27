@@ -26,3 +26,9 @@ export function getHumanizedMessageTimeStamp() {
   const formattedTime = date.toLocaleTimeString('en-US', options);
   return formattedTime;
 }
+
+
+export function getAuthorizationHeader() {
+  const token = getJwtToken();
+  return `Bearer ${token}`
+}
