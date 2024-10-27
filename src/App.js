@@ -1,15 +1,15 @@
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { PAGE_ROUTES } from 'Constants/pageRoutes.js';
+import React from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { PAGE_ROUTES } from "@constants/pageRoutes.js";
 
-import 'scss/base/common.scss';
+import "scss/base/common.scss";
 
-import Chat from './Components/Chat/Chat.js';
-import Login from './Components/Credentials/Login/Login.js';
-import SignUp from './Components/Credentials/SignUp/SignUp.js';
-import ProtectedRoute from './Components/Shared/ProtectedRoute/ProtectedRoute.js';
+import Chat from "@components/Chat/Chat.js";
+import Login from "@components/Credentials/Login/Login.js";
+import SignUp from "@components/Credentials/SignUp/SignUp.js";
+import ProtectedRoute from "@components/Shared/ProtectedRoute/ProtectedRoute.js";
 
 const App = () => {
   return (

@@ -1,5 +1,5 @@
-import { updateQueryData } from "features/apiSlice.js";
-import { getUsername } from "utils/globalUtils.js";
+import { updateQueryData } from "@features/apiSlice.js";
+import { getUsername } from "@utils/globalUtils.js";
 
 export function addMessageToChat(chatId, message) {
   return (dispatch) => {
