@@ -16,9 +16,7 @@ function useAllConversations() {
   }, [isSuccess, allChats]);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (stompClient) Object.values(allChats).forEach((conversation) => addChatToSubscription(conversation.id));
-    }, [1]);
+    if (stompClient) Object.values(allChats).forEach((conversation) => addChatToSubscription(conversation.id));
   }, [stompClient]);
 }
 

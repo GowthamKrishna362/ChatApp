@@ -40,8 +40,6 @@ function useSocketAction() {
 
   function sendPeerId(recipient, peerId) {
     const peerIdDto = getSharePeerIdDto(recipient, peerId);
-    console.log(peerIdDto);
-    
     sendPeerIdMessage(stompClient, peerIdDto);
   }
 
