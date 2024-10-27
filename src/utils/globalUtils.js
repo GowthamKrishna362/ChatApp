@@ -1,4 +1,4 @@
-import { SESSION_STORAGE_KEYS } from 'Constants/globalConstants.js';
+import { SESSION_STORAGE_KEYS } from '@constants/globalConstants.js';
 
 export function getItemFromSessionStorage(id) {
   const item = sessionStorage.getItem(id);

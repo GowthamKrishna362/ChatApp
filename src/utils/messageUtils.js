@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { SOCKET_MESSAGE_TYPES } from "Constants/globalConstants.js";
+import { SOCKET_MESSAGE_TYPES } from "@constants/globalConstants.js";
 
 import { getUsername } from "./globalUtils.js";
 

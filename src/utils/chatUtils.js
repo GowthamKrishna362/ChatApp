@@ -1,5 +1,5 @@
-import { CHAT_TYPES } from 'Constants/globalConstants.js';
-import { getUsername } from 'utils/globalUtils.js';
+import { CHAT_TYPES } from '@constants/globalConstants.js';
+import { getUsername } from '@utils/globalUtils.js';
 
 export function getChatDetailsMapFromApi(chats) {
   const initChatDetailsMap = {};

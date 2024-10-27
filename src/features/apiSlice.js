@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { API_CONSTANTS } from 'Constants/apiUrlConstants.js';
-import { getChatDetailsMapFromApi } from 'utils/chatUtils.js';
-import { getAuthorizationHeader, getJwtToken } from 'utils/globalUtils.js';
-import { addChatToList } from 'utils/storeHelpers/cacheUpdateUtils.js';
+import { API_CONSTANTS } from '@constants/apiUrlConstants.js';
+import { getChatDetailsMapFromApi } from '@utils/chatUtils.js';
+import { getAuthorizationHeader, getJwtToken } from '@utils/globalUtils.js';
+import { addChatToList } from '@utils/storeHelpers/cacheUpdateUtils.js';
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({

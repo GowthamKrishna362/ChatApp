@@ -3,15 +3,15 @@
     "baseUrl": ".",
     "moduleResolution": "nodenext",
     "paths": {
-      "scss/*": ["src/scss/*"],
-      "utils/*": ["src/utils/*"],
-      "features/*": ["src/features/*"],
-      "Components/*": ["src/Components/*"],
-      "Actions/*": ["src/Actions/*"],
-      "Constants/*": ["src/Constants/*"],
-      "Services/*": ["src/Services/*"],
-      "Contexts/*": ["src/Contexts/*"],
-      "CustomHooks/*": ["src/CustomHooks/*"]
+      "@scss/*": ["src/scss/*"],
+      "@utils/*": ["src/utils/*"],
+      "@features/*": ["src/features/*"],
+      "@components/*": ["src/components/*"],
+      "@actions/*": ["src/actions/*"],
+      "@constants/*": ["src/constants/*"],
+      "@Services/*": ["src/services/*"],
+      "@Contexts/*": ["src/contexts/*"],
+      "@CustomHooks/*": ["src/customHooks/*"]
     }
   },
   "exclude": ["node_modules"]

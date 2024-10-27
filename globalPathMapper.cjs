@@ -2,14 +2,14 @@ const path = require("path");
 
 const pathArray = [
   ["scss", "./src/scss"],
-  ["Components", "./src/Components"],
-  ["Actions", "./src/Actions"],
-  ["Constants", "./src/Constants"],
-  ["Services", "./src/Services"],
-  ["Contexts", "./src/Contexts"],
-  ["CustomHooks", "./src/CustomHooks"],
-  ["utils", "./src/utils"],
-  ["features", "./src/features"],
+  ["@components", "./src/components"],
+  ["@actions", "./src/actions"],
+  ["@constants", "./src/constants"],
+  ["@services", "./src/services"],
+  ["@contexts", "./src/contexts"],
+  ["@customHooks", "./src/customHooks"],
+  ["@utils", "./src/utils"],
+  ["@features", "./src/features"],
 ];
 
 const keyValue = pathArray.reduce((acc, curr) => {
