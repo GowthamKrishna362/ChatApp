@@ -18,8 +18,6 @@ import GroupInfoModal from "./GroupInfoModal.js";
 
 export default function ChatboxTopPanel() {
   const { data: chatDetailsMap } = useGetAllChatsQuery(getUsername());
-  console.log(chatDetailsMap, "xyz");
-
   const selectedChatId = useSelector(selectCurrentChatId);
   const { requestVideoCall } = useVideoChatContext();
   const modalProps = useModal();
