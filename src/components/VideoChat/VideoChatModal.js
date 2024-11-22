@@ -9,8 +9,6 @@ const VideoChatModal = () => {
   const modalProps = useModal();
   const { defaultStyles } = modalProps;
   const closeModal = () => closeVideoCall();
-
-  console.log(localVideoRef);
   
   return (
     <Modal
